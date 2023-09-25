@@ -1,6 +1,7 @@
 package eregistrarmgt.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,23 +14,21 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  Long studentId;
-
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long studentId;
+    @Column(nullable = false)
+    @NotEmpty(message = "student number can not be empty")
     private String studentNumber;
-
-    @Basic(optional = false)
+    @Column(nullable = false)
+    @NotEmpty(message = "first name can not be empty")
     private String firstName;
-    @Basic
     private String middleName;
-    @Basic(optional = false)
+    @Column(nullable = false)
+    @NotEmpty(message = "last name can not be empty")
     private String lastName;
-
-    private double cgpa;
-
-    @Temporal(TemporalType.DATE)
+    private Double cgpa;
     private LocalDate dateOfEnrollment;
-
-    private boolean isInternational;
+    @Column(nullable = false)
+    @NotEmpty(message = "last name can not be empty")
+    private String isInternational;
 }
